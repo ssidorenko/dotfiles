@@ -1,3 +1,6 @@
 [submodule "dotfiles/.vim/pack/shapeshed/start/vim-airline"]
-	path = dotfiles/.vim/pack/shapeshed/start/vim-airline
+	path = dotfiles/.vim/pack/plugins/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
+[submodule "dotfiles/.vim/pack/plugins/start/vimwiki"]
+	path = dotfiles/.vim/pack/plugins/start/vimwiki
+	url = https://github.com/vimwiki/vimwiki.git
