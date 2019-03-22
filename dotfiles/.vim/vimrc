@@ -99,7 +99,7 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 :set t_Co=256 " 256 colors
 :set background=dark
-:color grb256
+" :color grb256
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
@@ -228,4 +228,5 @@ let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown'
 "  YCM
 let g:ycm_server_python_interpreter = "/usr/bin/python2"
 let g:ycm_autoclose_preview_window_after_insertion = 1
-
+" CtrlP
+let g:ctrlp_map = '<leader>p'
