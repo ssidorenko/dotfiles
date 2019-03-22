@@ -224,7 +224,7 @@ nnoremap <leader>O :set iminsert=1<Cr>O
 :highlight Cursor guifg=NONE guibg=Green
 :highlight lCursor guifg=NONE guibg=Cyan
 "  YCM
-let g:ycm_server_python_interpreter = "/usr/bin/python2"
+let g:ycm_server_python_interpreter = "/usr/bin/python2.7"
 let g:ycm_autoclose_preview_window_after_insertion = 1
 " CtrlP
 let g:ctrlp_map = '<leader>p'
