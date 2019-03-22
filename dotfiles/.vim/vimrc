@@ -50,6 +50,7 @@ syntax on
 " 'cindent' is on in C files, etc.
 " Also load indent files, to automatically do language-dependent indenting.
 filetype plugin indent on
+set omnifunc=syntaxcomplete#Complete  
 " use emacs-style tab completion when selecting files, etc
 set wildmode=longest,list
 " make tab completion for files/buffers act like bash
@@ -63,6 +64,7 @@ set nu
 set foldcolumn=2
 set autoindent
 set foldmethod=marker
+set encoding=utf-8
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -97,7 +99,7 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 :set t_Co=256 " 256 colors
 :set background=dark
-:color grb256
+" :color grb256
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
@@ -132,6 +134,8 @@ nnoremap gf :vertical wincmd f<CR>
 " " \1 \2 \3 : go to buffer 1/2/3 etc
 nnoremap <Leader>l :ls<CR>
 nnoremap <Leader>b :bp<CR>
+nnoremap <Leader>c :w<CR>:bp<bar>sp<bar>bn<bar>bd<CR>
+nnoremap <Leader>C :bd<CR>
 nnoremap <Leader>f :bn<CR>
 nnoremap <Leader>g :e#<CR>
 nnoremap <Leader>1 :1b<CR>
@@ -219,3 +223,8 @@ nnoremap <leader>O :set iminsert=1<Cr>O
 
 :highlight Cursor guifg=NONE guibg=Green
 :highlight lCursor guifg=NONE guibg=Cyan
+"  YCM
+let g:ycm_server_python_interpreter = "/usr/bin/python2"
+let g:ycm_autoclose_preview_window_after_insertion = 1
+" CtrlP
+let g:ctrlp_map = '<leader>p'

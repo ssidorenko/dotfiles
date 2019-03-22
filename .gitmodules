@@ -4,3 +4,9 @@
 [submodule "dotfiles/.vim/pack/plugins/start/vimwiki"]
 	path = dotfiles/.vim/pack/plugins/start/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git
+[submodule "dotfiles/.vim/pack/plugins/start/YouCompleteMe"]
+	path = dotfiles/.vim/pack/plugins/start/YouCompleteMe
+	url = git@github.com:Valloric/YouCompleteMe.git
+[submodule "dotfiles/.vim/pack/plugins/start/ctrlp"]
+	path = dotfiles/.vim/pack/plugins/start/ctrlp
+	url = git@github.com:ctrlpvim/ctrlp.vim.git
