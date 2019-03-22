@@ -104,7 +104,7 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ":set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#keymap#enabled = 1
+let g:airline#extensions#keymap#enabled = 0
 
 
 
@@ -203,19 +203,19 @@ let g:vimwiki_list = [wiki_1, wiki_2]
 let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
 
 """ CHFR insert mode
-" set keymap=swiss_french
-" set iminsert=0
-" autocmd InsertLeave * set iminsert=0
-" nnoremap <leader>i :set iminsert=1<Cr>i
-" nnoremap <leader>I :set iminsert=1<Cr>I
-" nnoremap <leader>a :set iminsert=1<Cr>a
-" nnoremap <leader>A :set iminsert=1<Cr>A
-" nnoremap <leader>c :set iminsert=1<Cr>c
-" nnoremap <leader>C :set iminsert=1<Cr>C
-" nnoremap <leader>r :set iminsert=1<Cr>r
-" nnoremap <leader>R :set iminsert=1<Cr>R
-" nnoremap <leader>o :set iminsert=1<Cr>o
-" nnoremap <leader>O :set iminsert=1<Cr>O
+set keymap=swiss_french
+set iminsert=0
+autocmd InsertLeave * set iminsert=0
+nnoremap <leader>i :set iminsert=1<Cr>i
+nnoremap <leader>I :set iminsert=1<Cr>I
+nnoremap <leader>a :set iminsert=1<Cr>a
+nnoremap <leader>A :set iminsert=1<Cr>A
+nnoremap <leader>c :set iminsert=1<Cr>c
+nnoremap <leader>C :set iminsert=1<Cr>C
+nnoremap <leader>r :set iminsert=1<Cr>r
+nnoremap <leader>R :set iminsert=1<Cr>R
+nnoremap <leader>o :set iminsert=1<Cr>o
+nnoremap <leader>O :set iminsert=1<Cr>O
 
-" :highlight Cursor guifg=NONE guibg=Green
-" :highlight lCursor guifg=NONE guibg=Cyan
+:highlight Cursor guifg=NONE guibg=Green
+:highlight lCursor guifg=NONE guibg=Cyan
