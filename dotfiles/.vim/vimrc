@@ -50,6 +50,7 @@ syntax on
 " 'cindent' is on in C files, etc.
 " Also load indent files, to automatically do language-dependent indenting.
 filetype plugin indent on
+set omnifunc=syntaxcomplete#Complete  
 " use emacs-style tab completion when selecting files, etc
 set wildmode=longest,list
 " make tab completion for files/buffers act like bash
@@ -63,6 +64,7 @@ set nu
 set foldcolumn=2
 set autoindent
 set foldmethod=marker
+set encoding=utf-8
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -219,3 +221,9 @@ let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown'
 
 " :highlight Cursor guifg=NONE guibg=Green
 " :highlight lCursor guifg=NONE guibg=Cyan
+"
+"
+"  YCM
+let g:ycm_server_python_interpreter = "/usr/bin/python2"
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
