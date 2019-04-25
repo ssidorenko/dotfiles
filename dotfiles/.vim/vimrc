@@ -101,7 +101,7 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 :set t_Co=256 " 256 colors
 :set background=dark
-" :color grb256
+:color solarized
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
@@ -111,6 +111,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#keymap#enabled = 0
 let g:airline_highlighting_cache=1
 let g:pyindent_searchpair_timeout = 500
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
 
 
 
@@ -140,8 +142,8 @@ nnoremap gf :vertical wincmd f<CR>
 " " \1 \2 \3 : go to buffer 1/2/3 etc
 nnoremap <Leader>l :ls<CR>
 nnoremap <Leader>b :bp<CR>
-nnoremap <Leader>c :w<CR>:bp<bar>sp<bar>bn<bar>bd<CR>
-nnoremap <Leader>C :bd<CR>
+nnoremap <Leader>w :w<CR>:bp<bar>sp<bar>bn<bar>bd<CR>
+nnoremap <Leader>W :bd<CR>
 nnoremap <Leader>f :bn<CR>
 nnoremap <Leader>g :e#<CR>
 nnoremap <Leader>1 :1b<CR>
@@ -236,4 +238,10 @@ let g:ycm_server_python_interpreter = "/usr/bin/python2.7"
 let g:ycm_autoclose_preview_window_after_insertion = 1
 " CtrlP
 let g:ctrlp_map = '<leader>p'
- let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+let g:ctrlp_clear_cache_on_exit = 0
+
+
+" MacVim
+set guifont=Menlo-Regular:h12 
+set nofsync
