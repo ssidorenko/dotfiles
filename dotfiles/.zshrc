@@ -108,3 +108,21 @@ source $ZSH/oh-my-zsh.sh
 #  export PROMPT="%{%f%k%b%}
 # %{%K{${bkg}}%B%F{green}%}%n%{%B%F{blue}%}@%{%B%F{red}%}%m%{%B%F{green}%} %{%b%F{yellow}%K{${bkg}}%}%~%{%B%F{green}%}$(git_prompt_info)%E%{%f%k%b%}
 # %{%K{${bkg}}%}$(_prompt_char)%{%K{${bkg}}%} %#%{%f%k%b%} "
+# .  ~/anaconda3/etc/profile.d/conda.sh  # commented out by conda initialize
+# conda activate base  # commented out by conda initialize
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

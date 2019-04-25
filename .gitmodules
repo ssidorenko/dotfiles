@@ -10,3 +10,9 @@
 [submodule "dotfiles/.vim/pack/plugins/start/ctrlp"]
 	path = dotfiles/.vim/pack/plugins/start/ctrlp
 	url = git@github.com:ctrlpvim/ctrlp.vim.git
+[submodule "dotfiles/.vim/pack/plugins/start/pythonpep8"]
+	path = dotfiles/.vim/pack/plugins/start/pythonpep8
+	url = git@github.com:Vimjas/vim-python-pep8-indent.git
+[submodule "dotfiles/.vim/pack/plugins/start/vim-vue"]
+	path = dotfiles/.vim/pack/plugins/start/vim-vue
+	url = https://github.com/posva/vim-vue.git

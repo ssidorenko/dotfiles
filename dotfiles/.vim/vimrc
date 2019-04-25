@@ -86,11 +86,14 @@ augroup vimrcEx
 
   autocmd! BufRead,BufNewFile *.sass setfiletype sass
 
+  autocmd BufRead *.md  set tw=119
   autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
   autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
+  
 
   " Indent p tags
-  autocmd FileType html,eruby if g:html_indent_tags !~ '\\|p\>' | let g:html_indent_tags .= '\|p\|li\|dt\|dd' | endif
+  let g:html_indent_tags = '\|p\|li\|dt\|dd'
+  autocmd BufRead,BufNewFile *.vue set ft=html
 
   " Don't syntax highlight markdown because it's often wrong
   autocmd! FileType mkd setlocal syn=off
@@ -143,7 +146,7 @@ nnoremap gf :vertical wincmd f<CR>
 nnoremap <Leader>l :ls<CR>
 nnoremap <Leader>b :bp<CR>
 nnoremap <Leader>w :w<CR>:bp<bar>sp<bar>bn<bar>bd<CR>
-nnoremap <Leader>W :bd<CR>
+nnoremap <Leader>W :bp\|bd #<CR>
 nnoremap <Leader>f :bn<CR>
 nnoremap <Leader>g :e#<CR>
 nnoremap <Leader>1 :1b<CR>
@@ -156,6 +159,8 @@ nnoremap <Leader>7 :7b<CR>
 nnoremap <Leader>8 :8b<CR>
 nnoremap <Leader>9 :9b<CR>
 nnoremap <Leader>0 :10b<CR>
+nnoremap <Leader>r "0
+nnoremap <Leader>h :noh<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
@@ -220,17 +225,6 @@ set iminsert=0
 nnoremap <leader><space> :set iminsert=0<Cr>
 nnoremap <leader><space><space> :set iminsert=1<Cr>
 " autocmd InsertLeave * set iminsert=0
-nnoremap <leader>i :set iminsert=1<Cr>i
-nnoremap <leader>I :set iminsert=1<Cr>I
-nnoremap <leader>a :set iminsert=1<Cr>a
-nnoremap <leader>A :set iminsert=1<Cr>A
-nnoremap <leader>c :set iminsert=1<Cr>c
-nnoremap <leader>C :set iminsert=1<Cr>C
-nnoremap <leader>r :set iminsert=1<Cr>r
-nnoremap <leader>R :set iminsert=1<Cr>R
-nnoremap <leader>o :set iminsert=1<Cr>o
-nnoremap <leader>O :set iminsert=1<Cr>O
-
 :highlight Cursor guifg=NONE guibg=Green
 :highlight lCursor guifg=NONE guibg=Cyan
 "  YCM
@@ -239,8 +233,35 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 " CtrlP
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 
 " MacVim
 set guifont=Menlo-Regular:h12 
 set nofsync
+
+" Line nubering
+autocmd InsertEnter * :set nonumber relativenumber
+autocmd InsertLeave * :set number norelativenumber
+
+" Functions
+function! DeleteInactiveBufs()
+    "From tabpagebuflist() help, get a list of all buffers in all tabs
+    let tablist = []
+    for i in range(tabpagenr('$'))
+        call extend(tablist, tabpagebuflist(i + 1))
+    endfor
+
+    "Below originally inspired by Hara Krishna Dara and Keith Roberts
+    "http://tech.groups.yahoo.com/group/vim/message/56425
+    let nWipeouts = 0
+    for i in range(1, bufnr('$'))
+        if bufexists(i) && !getbufvar(i,"&mod") && index(tablist, i) == -1
+        "bufno exists AND isn't modified AND isn't in the list of buffers open in windows and tabs
+            silent exec 'bwipeout' i
+            let nWipeouts = nWipeouts + 1
+        endif
+    endfor
+    echomsg nWipeouts . ' buffer(s) wiped out'
+endfunction
+command! Bdi :call DeleteInactiveBufs()
