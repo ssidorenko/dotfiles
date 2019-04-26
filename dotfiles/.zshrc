@@ -117,8 +117,9 @@ source $ZSH/oh-my-zsh.sh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
+HOSTNAME=$(hostname -s)
 
-if [ `hostname -s` -eq `icsil1noteb95` ]; then
+if [ "$HOSTNAME" = 'icsil1noteb95' ]; then
     __conda_setup="$('/home/sidorenko/miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
@@ -140,5 +141,7 @@ else
             . "/miniconda3/etc/profile.d/conda.sh"
         else
             export PATH="/miniconda3/bin:$PATH"
+        fi
+    fi
     unset __conda_setup
 fi
