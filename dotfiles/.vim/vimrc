@@ -103,8 +103,8 @@ augroup END
 " COLOR
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 :set t_Co=256 " 256 colors
-:set background=dark
-:color solarized
+:set background=light
+:color PaperColor
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
@@ -237,9 +237,13 @@ let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 
-" MacVim
-set guifont=Menlo-Regular:h12 
-set nofsync
+set guifont=Noto\ Mono\ 8
+if has("gui_macvim")
+    set nofsync
+endif
+" GVim
+set guioptions -=m 
+set guioptions -=T 
 
 " Line nubering
 autocmd InsertEnter * :set nonumber relativenumber

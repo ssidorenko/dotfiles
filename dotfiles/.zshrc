@@ -132,6 +132,7 @@ if [ "$HOSTNAME" = 'icsil1noteb95' ]; then
     fi
     unset __conda_setup
 else
+    .  ~/miniconda3/etc/profile.d/conda.sh
     # <<< conda initialize <<<
     __conda_setup="$('/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then
@@ -145,3 +146,6 @@ else
     fi
     unset __conda_setup
 fi
+
+
+export PATH="~/bin:$PATH"
