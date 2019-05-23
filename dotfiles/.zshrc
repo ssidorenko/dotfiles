@@ -123,4 +123,5 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+[[ -s $HOME/.zshrc.local ]] && source "$HOME/.zshrc.local"
 
