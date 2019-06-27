@@ -111,9 +111,6 @@ source $ZSH/oh-my-zsh.sh
 # .  ~/anaconda3/etc/profile.d/conda.sh  # commented out by conda initialize
 # conda activate base  # commented out by conda initialize
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -132,6 +129,7 @@ if [ "$HOSTNAME" = 'icsil1noteb95' ]; then
     fi
     unset __conda_setup
 else
+    .  ~/miniconda3/etc/profile.d/conda.sh
     # <<< conda initialize <<<
     __conda_setup="$('/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then
@@ -145,3 +143,8 @@ else
     fi
     unset __conda_setup
 fi
+# <<< conda initialize <<<
+[[ -s $HOME/.zshrc.local ]] && source "$HOME/.zshrc.local"
+
+
+export PATH="~/bin:$PATH"
