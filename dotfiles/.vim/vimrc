@@ -243,6 +243,7 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 set guifont=Noto\ Mono\ 8
 if has("gui_macvim")
+    set guifont=Menlo-Regular:h14
     set nofsync
 endif
 " GVim
