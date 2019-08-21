@@ -73,7 +73,7 @@ command! Prose inoremap <buffer> . .<C-G>u|
             \ inoremap <buffer> ! !<C-G>u|
             \ inoremap <buffer> ? ?<C-G>u|
             \ setlocal spell spelllang=fr,en
-            \     nolist nowrap tw=74 fo=t1 nonu|
+            \     nolist nowrap tw=74 fo=tn1|
             \ augroup PROSE|
             \   autocmd InsertEnter <buffer> set fo+=a|
             \   autocmd InsertLeave <buffer> set fo-=a|
@@ -83,14 +83,14 @@ command! Code silent! iunmap <buffer> .|
             \ silent! iunmap <buffer> !|
             \ silent! iunmap <buffer> ?|
             \ setlocal nospell list nowrap
-            \     tw=74 fo=cqr1 showbreak=… nu|
+            \     tw=74 fo=tcqlnr1 showbreak=… nu|
             \ silent! autocmd! PROSE * <buffer>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup vimrcEx
-  " Clear all autocmds in the group
+    " Clear all autocmds in the group
   autocmd!
   autocmd FileType text setlocal textwidth=78
   " Jump to last cursor position unless it's invalid or in an event handler
@@ -184,6 +184,7 @@ nnoremap <Leader>h :noh<CR>
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
 xnoremap <leader>p "_dP
+nnoremap <Leader>cc :w !wc -c<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
