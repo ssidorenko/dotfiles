@@ -1,3 +1,9 @@
 [user]
 	email = semion.sidorenko@gmail.com
 	name = Semion Sidorenko
+[push]
+	default = simple
+[core]
+	editor = vim
+[init]
+	templatedir = ~/.git_template

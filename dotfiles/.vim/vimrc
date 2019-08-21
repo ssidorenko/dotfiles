@@ -180,6 +180,10 @@ nnoremap <Leader>9 :9b<CR>
 nnoremap <Leader>0 :10b<CR>
 nnoremap <Leader>r "0
 nnoremap <Leader>h :noh<CR>
+
+nnoremap <leader>d "_d
+xnoremap <leader>d "_d
+xnoremap <leader>p "_dP
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
@@ -258,11 +262,14 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 set guifont=Noto\ Mono\ 8
 if has("gui_macvim")
+    set guifont=Menlo-Regular:h14
     set nofsync
 endif
 " GVim
-set guioptions -=m 
-set guioptions -=T 
+if has("gui_running")
+  set guioptions -=m 
+  set guioptions -=T 
+endif
 
 " Line nubering
 autocmd InsertEnter * :set nonumber relativenumber

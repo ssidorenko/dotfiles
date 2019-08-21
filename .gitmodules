@@ -16,3 +16,9 @@
 [submodule "dotfiles/.vim/pack/plugins/start/vim-vue"]
 	path = dotfiles/.vim/pack/plugins/start/vim-vue
 	url = https://github.com/posva/vim-vue.git
+[submodule "dotfiles/.vim/pack/plugins/start/vim-fugitive"]
+	path = dotfiles/.vim/pack/plugins/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "dotfiles/.oh-my-zsh"]
+	path = dotfiles/.oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh.git
