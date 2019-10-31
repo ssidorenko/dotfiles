@@ -145,4 +145,4 @@ fi
 [[ -s $HOME/.zshrc.local ]] && source "$HOME/.zshrc.local"
 
 
-export PATH="~/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
