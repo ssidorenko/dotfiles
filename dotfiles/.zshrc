@@ -112,26 +112,11 @@ source $ZSH/oh-my-zsh.sh
 # conda activate base  # commented out by conda initialize
 
 
-# >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 HOSTNAME=$(hostname -s)
 
 if [ "$HOSTNAME" = 'icsil1noteb95' ]; then
     alias mountpc32storage="sshfs sidorenko@lsirpc32.epfl.ch:/home/sidorenko /mnt/lsirpc32 -ovolname=pc32storage -oauto_cache,reconnect,defer_permissions,noappledouble,IdentityFile=~/.ssh/radigue_id_rsa"
-    __conda_setup="$('/home/sidorenko/miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "/home/sidorenko/miniconda/etc/profile.d/conda.sh" ]; then
-            . "/home/sidorenko/miniconda/etc/profile.d/conda.sh"
-        else
-            export PATH="/home/sidorenko/miniconda/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
-else
-    .  ~/miniconda3/etc/profile.d/conda.sh
-    # <<< conda initialize <<<
     __conda_setup="$('/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
@@ -143,8 +128,20 @@ else
         fi
     fi
     unset __conda_setup
+else
+# .  ~/miniconda3/etc/profile.d/conda.sh  # commented out by conda initialize
+    __conda_setup="$('/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/miniconda3/etc/profile.d/conda.sh" ]; then
+# . "/miniconda3/etc/profile.d/conda.sh"  # commented out by conda initialize
+        else
+# export PATH="/miniconda3/bin:$PATH"  # commented out by conda initialize
+        fi
+    fi
+    unset __conda_setup
 fi
-# <<< conda initialize <<<
 [[ -s $HOME/.zshrc.local ]] && source "$HOME/.zshrc.local"
 
 

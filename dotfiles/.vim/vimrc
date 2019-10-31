@@ -135,8 +135,8 @@ imap <c-l> <space>=><space>
 " Can't be bothered to understand ESC vs <c-c> in insert mode
 imap <c-c> <esc>
 " Clear the search buffer when hitting return
-:nnoremap <CR> :nohlsearch<cr>
-nnoremap <leader><leader> <c-^>
+nnoremap <CR> :nohlsearch<cr>
+" nnoremap <leader><leader> <c-^>
 nnoremap gf :vertical wincmd f<CR>
 " Mappings to access buffers (don't use "\p" because a
 " " delay before pressing "p" would accidentally paste).
@@ -147,6 +147,7 @@ nnoremap <Leader>l :ls<CR>
 nnoremap <Leader>b :bp<CR>
 nnoremap <Leader>w :w<CR>:bp<bar>sp<bar>bn<bar>bd<CR>
 nnoremap <Leader>W :bp\|bd #<CR>
+nnoremap <Leader>a :%bd\|e #<CR>
 nnoremap <Leader>f :bn<CR>
 nnoremap <Leader>g :e#<CR>
 nnoremap <Leader>1 :1b<CR>
@@ -159,8 +160,10 @@ nnoremap <Leader>7 :7b<CR>
 nnoremap <Leader>8 :8b<CR>
 nnoremap <Leader>9 :9b<CR>
 nnoremap <Leader>0 :10b<CR>
+nnoremap <Leader>. :buffers<CR>:buffer<Space>
 nnoremap <Leader>r "0
 nnoremap <Leader>h :noh<CR>
+nnoremap <Leader><Leader> :b 
 
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
@@ -241,10 +244,11 @@ let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 
-set guifont=Noto\ Mono\ 8
 if has("gui_macvim")
     set guifont=Menlo-Regular:h14
     set nofsync
+  else
+    set guifont=Noto\ Mono\ 8
 endif
 " GVim
 if has("gui_running")
