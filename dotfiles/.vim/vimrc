@@ -100,7 +100,7 @@ augroup vimrcEx
     \ endif
 
   "for ruby, autoindent with two spaces, always expand tabs
-  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
+  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber,typescript set ai sw=2 sts=2 et
   autocmd FileType python set sw=4 sts=4 textwidth=119 et
 
   autocmd! BufRead,BufNewFile *.sass setfiletype sass
@@ -183,6 +183,7 @@ nnoremap <Leader>. :buffers<CR>:buffer<Space>
 nnoremap <Leader>r "0
 nnoremap <Leader>h :noh<CR>
 nnoremap <Leader><Leader> :b 
+nnoremap <Leader>E :Vexplore<CR>
 
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
@@ -192,17 +193,34 @@ nnoremap <Leader>cc :w !wc -c<CR>
 " MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
-endfunction
-
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <s-tab> <c-n>
+"function! InsertTabWrapper()
+"    let col = col('.') - 1
+"    if !col || getline('.')[col - 1] !~ '\k'
+"        return "\<tab>"
+"    else
+"        return "\<c-p>"
+"    endif
+"endfunction
+"
+"inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+"inoremap <s-tab> <c-n>
+"
+"" COC completion
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+""" Customize colors
+"func! s:my_colors_setup() abort
+"    " this is an example
+"    hi Pmenu guibg=#d7e5dc gui=NONE
+"    hi PmenuSel guibg=#b7c7b7 gui=NONE
+"    hi PmenuSbar guibg=#bcbcbc
+"    hi PmenuThumb guibg=#585858
+"endfunc
+"
+"augroup colorscheme_coc_setup | au!
+"    au ColorScheme * call s:my_colors_setup()
+"augroup END
+hi CocMenuSel ctermbg=white guibg=white 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OPEN FILES IN DIRECTORY OF CURRENT FILE
@@ -234,7 +252,7 @@ command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
 
 """ Vimwiki
 let wiki_1 = {}
-let wiki_1.path = '~/ownCloud/UNIL//'
+let wiki_1.path = '~/switchdrive/LHST/'
 let wiki_1.syntax = 'markdown'
 let wiki_1.ext = '.md'
 
@@ -243,8 +261,8 @@ let wiki_2.path = '~/ownCloud/Music/Torchon/'
 let wiki_2.syntax = 'markdown'
 let wiki_2.ext = '.md'
 
-"let g:vimwiki_list = [wiki_1, wiki_2]
-let g:vimwiki_list = [wiki_2, wiki_1]
+let g:vimwiki_list = [wiki_1, wiki_2]
+"let g:vimwiki_list = [wiki_2, wiki_1]
 let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
 
 """ CHFR insert mode
@@ -256,17 +274,22 @@ nnoremap <leader><space><space> :set iminsert=1<Cr>
 :highlight Cursor guifg=NONE guibg=Green
 :highlight lCursor guifg=NONE guibg=Cyan
 "  YCM
-let g:ycm_server_python_interpreter = "/usr/bin/python2.7"
+
+let g:ycm_server_python_interpreter = "/Users/sidorenk/opt/anaconda3/bin/python3"
 let g:ycm_autoclose_preview_window_after_insertion = 1
+"let g:ycm_clangd_binary_path = trim(system('brew --prefix llvm')).'/bin/clangd'
+
 " CtrlP
 let g:ctrlp_map = '<leader>p'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard && git submodule foreach "git ls-files -co --exclude-standard | while read i; do echo \"\$path/\$i\"; done"', 'find %s -type f']
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard && git submodule foreach "git ls-files -co --exclude-standard | while read i; do echo \"\$path/\$i\"; done"']
+
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 
 if has("gui_macvim")
-    set guifont=Menlo-Regular:h14
+    set guifont=Menlo-Regular:h10
     set nofsync
   else
     set guifont=Noto\ Mono\ 8
@@ -302,3 +325,24 @@ function! DeleteInactiveBufs()
     echomsg nWipeouts . ' buffer(s) wiped out'
 endfunction
 command! Bdi :call DeleteInactiveBufs()
+
+let g:coc_global_extensions = [
+  \ 'coc-tsserver'
+  \ ]
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
+
+let g:coc_global_extensions += ['coc-solargraph']
+
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 2
+

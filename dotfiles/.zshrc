@@ -2,17 +2,17 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="$HOME/.oh-my-zsh"
+export ZSH="/Users/sidorenk/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="blinks"
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
@@ -26,8 +26,14 @@ ZSH_THEME="blinks"
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -39,6 +45,8 @@ ZSH_THEME="blinks"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
+# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -58,21 +66,11 @@ ZSH_THEME="blinks"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  docker
-  docker-compose
-  git
-  npm
-  pip
-  python
-  ubuntu
-  vi-mode
-  zsh-syntax-highlighting
-)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -93,9 +91,6 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -104,45 +99,25 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias journal="vim ~/ownCloud/journal/journal.md"
-#  export PROMPT="%{%f%k%b%}
-# %{%K{${bkg}}%B%F{green}%}%n%{%B%F{blue}%}@%{%B%F{red}%}%m%{%B%F{green}%} %{%b%F{yellow}%K{${bkg}}%}%~%{%B%F{green}%}$(git_prompt_info)%E%{%f%k%b%}
-# %{%K{${bkg}}%}$(_prompt_char)%{%K{${bkg}}%} %#%{%f%k%b%} "
-# .  ~/anaconda3/etc/profile.d/conda.sh  # commented out by conda initialize
-# conda activate base  # commented out by conda initialize
-
-
+alias dc="docker-compose"
+alias dcr="docker-compose run"
+alias dcrw="docker-compose run web"
+alias dct="docker-compose -f docker-compose.test.yml"
+alias dctr="docker-compose -f docker-compose.test.yml run"
+# >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-HOSTNAME=$(hostname -s)
-
-if [ "$HOSTNAME" = 'icsil1noteb95' ]; then
-    alias mountpc32storage="sshfs sidorenko@lsirpc32.epfl.ch:/home/sidorenko /mnt/lsirpc32 -ovolname=pc32storage -oauto_cache,reconnect,defer_permissions,noappledouble,IdentityFile=~/.ssh/radigue_id_rsa"
-    __conda_setup="$('/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "/miniconda3/etc/profile.d/conda.sh" ]; then
-            . "/miniconda3/etc/profile.d/conda.sh"
-        else
-            export PATH="/miniconda3/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
+__conda_setup="$('/Users/sidorenk/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
 else
-# .  ~/miniconda3/etc/profile.d/conda.sh  # commented out by conda initialize
-    __conda_setup="$('/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
+    if [ -f "/Users/sidorenk/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/sidorenk/opt/anaconda3/etc/profile.d/conda.sh"
     else
-        if [ -f "/miniconda3/etc/profile.d/conda.sh" ]; then
-# . "/miniconda3/etc/profile.d/conda.sh"  # commented out by conda initialize
-        else
-# export PATH="/miniconda3/bin:$PATH"  # commented out by conda initialize
-        fi
+        export PATH="/Users/sidorenk/opt/anaconda3/bin:$PATH"
     fi
-    unset __conda_setup
 fi
-[[ -s $HOME/.zshrc.local ]] && source "$HOME/.zshrc.local"
-
-
-export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+unset __conda_setup
+# <<< conda initialize <<<
+export PATH="$PATH:~/bin/"
+export PATH="/usr/local/opt/ruby@2.7/bin:$PATH"
+export PATH="/usr/local/lib/ruby/gems/2.7.0/bin:$PATH"

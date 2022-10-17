@@ -25,3 +25,18 @@
 [submodule "dotfiles/.vim/pack/plugins/start/vim-go"]
 	path = dotfiles/.vim/pack/plugins/start/vim-go
 	url = https://github.com/fatih/vim-go
+[submodule "dotfiles/.vim/pack/plugins/start/vim-javascript"]
+	path = dotfiles/.vim/pack/plugins/start/vim-javascript
+	url = git@github.com:pangloss/vim-javascript.git
+[submodule "dotfiles/.vim/pack/plugins/start/typescript-vim"]
+	path = dotfiles/.vim/pack/plugins/start/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim.git
+[submodule "dotfiles/.vim/pack/plugins/start/vim-prettier"]
+	path = dotfiles/.vim/pack/plugins/start/vim-prettier
+	url = git@github.com:prettier/vim-prettier.git
+[submodule "dotfiles/.vim/pack/plugins/start/coc.nvim"]
+	path = dotfiles/.vim/pack/plugins/start/coc.nvim
+	url = git@github.com:neoclide/coc.nvim.git
+[submodule "dotfiles/.vim/pack/plugins/start/vim-terraform"]
+	path = dotfiles/.vim/pack/plugins/start/vim-terraform
+	url = git@github.com:hashivim/vim-terraform.git
